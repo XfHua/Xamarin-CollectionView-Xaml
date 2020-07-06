@@ -4,28 +4,26 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="App299.MainPage">
+             x:Class="App299.MainPage"
+             xmlns:app="clr-namespace:App299" BackgroundColor="LightGreen">
 
-    <CollectionView >
+	<ContentPage.BindingContext>
+		<app:MainViewModel />
+	</ContentPage.BindingContext>
+
+	<CollectionView ItemsSource="{Binding ItemsSource}" >
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" Span="3"/>
         </CollectionView.ItemsLayout>
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>Baboon</x:String>
-                <x:String>Capuchin Monkey Capuchin MonkeyCapuchin MonkeyCapuchin MonkeyCapuchin MonkeyCapuchin MonkeyCapuchin MonkeyCapuchin Monkey</x:String>
-                <x:String>Blue Monkey</x:String>
-            </x:Array>
-        </CollectionView.ItemsSource>
-
+        
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Red" x:Name="ItemContainer">
-                    <StackLayout Padding="5" BackgroundColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="{Binding Width, Source={x:Reference ItemContainer}}" HeightRequest="{Binding Width, Source={x:Reference ItemContainer}}">
-                        <Image Source="Images.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" />
-                    </StackLayout>
+				<StackLayout Padding="5" BackgroundColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="{Binding Width, Source={x:Reference ItemContainer}}" HeightRequest="{Binding Width, Source={x:Reference ItemContainer}}">
+						<Image Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" />
+				</StackLayout>
 
-                    <Label Text="{Binding .}" HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Name}" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
